@@ -73,6 +73,15 @@
        super.m_6667_(p_36152_);
        this.m_20090_();
        if (!this.m_5833_()) {
+@@ -612,7 +_,7 @@
+    }
+ 
+    protected SoundEvent m_7975_(DamageSource p_36310_) {
+-      return p_36310_.m_269415_().f_268686_().m_269402_();
++      return p_36310_.m_269415_().f_268686_().getHurtSound(p_36310_); // FORGE: Use DamageSource sensitive forge method
+    }
+ 
+    protected SoundEvent m_5592_() {
 @@ -621,7 +_,7 @@
  
     @Nullable

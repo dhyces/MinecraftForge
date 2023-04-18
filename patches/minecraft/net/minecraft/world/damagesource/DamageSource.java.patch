@@ -1,0 +1,23 @@
+--- a/net/minecraft/world/damagesource/DamageSource.java
++++ b/net/minecraft/world/damagesource/DamageSource.java
+@@ -66,6 +_,11 @@
+    }
+ 
+    public Component m_6157_(LivingEntity p_19343_) {
++      Component custom = this.m_269415_().f_268472_().makeCustomComponent(this, p_19343_); // FORGE: Allow handling custom death messages with context
++      if (custom != null)
++      {
++         return custom;
++      }
+       String s = "death.attack." + this.m_269415_().f_268677_();
+       if (this.f_268569_ == null && this.f_268595_ == null) {
+          LivingEntity livingentity1 = p_19343_.m_21232_();
+@@ -104,7 +_,7 @@
+             flag = true;
+             break;
+          default:
+-            throw new IncompatibleClassChangeError();
++            flag = this.m_269415_().f_268501_().shouldScale(this); // FORGE: Test custom DamageScaling. No null safety
+       }
+ 
+       return flag;

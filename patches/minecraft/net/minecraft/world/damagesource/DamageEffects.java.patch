@@ -1,0 +1,37 @@
+--- a/net/minecraft/world/damagesource/DamageEffects.java
++++ b/net/minecraft/world/damagesource/DamageEffects.java
+@@ -5,7 +_,7 @@
+ import net.minecraft.sounds.SoundEvents;
+ import net.minecraft.util.StringRepresentable;
+ 
+-public enum DamageEffects implements StringRepresentable {
++public enum DamageEffects implements StringRepresentable, net.minecraftforge.common.IExtensibleEnum {
+    HURT("hurt", SoundEvents.f_12323_),
+    THORNS("thorns", SoundEvents.f_12511_),
+    DROWNING("drowning", SoundEvents.f_12324_),
+@@ -29,4 +_,25 @@
+    public SoundEvent m_269402_() {
+       return this.f_268660_;
+    }
++
++   // FORGE START
++   private java.util.function.Function<DamageSource, SoundEvent> soundEventFunction = source -> m_269402_();
++
++   DamageEffects(net.minecraft.resources.ResourceLocation id, java.util.function.Function<DamageSource, SoundEvent> soundEventFunction)
++   {
++      this.f_268435_ = id.toString();
++      this.soundEventFunction = soundEventFunction;
++      f_268660_ = SoundEvents.f_12323_;
++   }
++
++   public SoundEvent getHurtSound(DamageSource source)
++   {
++      return soundEventFunction.apply(source);
++   }
++
++   public static DamageEffects create(String name, net.minecraft.resources.ResourceLocation id, java.util.function.Function<DamageSource, SoundEvent> soundEventFunction)
++   {
++      throw new IllegalStateException("Enum not extended");
++   }
++   // FORGE END
+ }

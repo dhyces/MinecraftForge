@@ -13,6 +13,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
@@ -30,6 +31,7 @@ public class Tags
         Items.init();
         Fluids.init();
         Biomes.init();
+        DamageTypes.init();
     }
 
     public static class Blocks
@@ -626,6 +628,19 @@ public class Tags
         private static TagKey<Biome> tag(String name)
         {
             return TagKey.create(Registries.BIOME, new ResourceLocation("forge", name));
+        }
+    }
+
+    public static class DamageTypes {
+        private static void init() {}
+
+        public static final TagKey<DamageType> IS_MAGIC = tag("is_magic");
+        public static final TagKey<DamageType> IS_ENVIRONMENT = tag("is_environment");
+        public static final TagKey<DamageType> IS_PHYSICAL = tag("is_physical");
+        public static final TagKey<DamageType> NO_FLINCH = tag("no_flinch");
+
+        private static TagKey<DamageType> tag(String name) {
+            return TagKey.create(Registries.DAMAGE_TYPE, new ResourceLocation("forge", name));
         }
     }
 }

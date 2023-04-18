@@ -1,0 +1,36 @@
+--- a/net/minecraft/world/damagesource/DamageScaling.java
++++ b/net/minecraft/world/damagesource/DamageScaling.java
+@@ -3,7 +_,7 @@
+ import com.mojang.serialization.Codec;
+ import net.minecraft.util.StringRepresentable;
+ 
+-public enum DamageScaling implements StringRepresentable {
++public enum DamageScaling implements StringRepresentable, net.minecraftforge.common.IExtensibleEnum {
+    NEVER("never"),
+    WHEN_CAUSED_BY_LIVING_NON_PLAYER("when_caused_by_living_non_player"),
+    ALWAYS("always");
+@@ -18,4 +_,24 @@
+    public String m_7912_() {
+       return this.f_268442_;
+    }
++
++   // FORGE START
++   private java.util.function.Predicate<DamageSource> sourcePredicate;
++
++   DamageScaling(net.minecraft.resources.ResourceLocation id, java.util.function.Predicate<DamageSource> sourcePredicate)
++   {
++      this.f_268442_ = id.toString();
++      this.sourcePredicate = sourcePredicate;
++   }
++
++   public boolean shouldScale(DamageSource source)
++   {
++      return sourcePredicate.test(source);
++   }
++
++   public static DamageScaling create(String name, net.minecraft.resources.ResourceLocation id, java.util.function.Predicate<DamageSource> sourcePredicate)
++   {
++      throw new IllegalStateException("Enum not extended");
++   }
++   // FORGE END
+ }

@@ -1,0 +1,23 @@
+{
+  "values": [
+    "minecraft:cactus",
+    "minecraft:fall",
+    "minecraft:fly_into_wall",
+    "minecraft:sweet_berry_bush",
+    "minecraft:stalagmite",
+    "minecraft:falling_block",
+    "minecraft:falling_anvil",
+    "minecraft:falling_stalactite",
+    "minecraft:sting",
+    "minecraft:mob_attack",
+    "minecraft:mob_attack_no_aggro",
+    "minecraft:player_attack",
+    "minecraft:arrow",
+    "minecraft:trident",
+    "minecraft:mob_projectile",
+    "minecraft:fireball",
+    "minecraft:unattributed_fireball",
+    "minecraft:wither_skull",
+    "minecraft:thrown"
+  ]
+}

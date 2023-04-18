@@ -1,0 +1,36 @@
+--- a/net/minecraft/world/damagesource/DeathMessageType.java
++++ b/net/minecraft/world/damagesource/DeathMessageType.java
+@@ -3,7 +_,7 @@
+ import com.mojang.serialization.Codec;
+ import net.minecraft.util.StringRepresentable;
+ 
+-public enum DeathMessageType implements StringRepresentable {
++public enum DeathMessageType implements StringRepresentable, net.minecraftforge.common.IExtensibleEnum {
+    DEFAULT("default"),
+    FALL_VARIANTS("fall_variants"),
+    INTENTIONAL_GAME_DESIGN("intentional_game_design");
+@@ -18,4 +_,24 @@
+    public String m_7912_() {
+       return this.f_268617_;
+    }
++
++   // FORGE START
++   private java.util.function.BiFunction<DamageSource, net.minecraft.world.entity.LivingEntity, net.minecraft.network.chat.Component> componentBiFunction = (damageSource, livingEntity) -> null;
++
++   DeathMessageType(net.minecraft.resources.ResourceLocation id, java.util.function.BiFunction<DamageSource, net.minecraft.world.entity.LivingEntity, net.minecraft.network.chat.Component> componentBiFunction)
++   {
++      this.f_268617_ = id.toString();
++      this.componentBiFunction = componentBiFunction;
++   }
++
++   public @org.jetbrains.annotations.Nullable net.minecraft.network.chat.Component makeCustomComponent(DamageSource damageSource, net.minecraft.world.entity.LivingEntity affectedEntity)
++   {
++      return componentBiFunction.apply(damageSource, affectedEntity);
++   }
++
++   public static DeathMessageType create(String name, net.minecraft.resources.ResourceLocation id, java.util.function.BiFunction<DamageSource, net.minecraft.world.entity.LivingEntity, net.minecraft.network.chat.Component> componentBiFunction)
++   {
++      throw new IllegalStateException("Enum not extended");
++   }
++   // FORGE END
+ }
