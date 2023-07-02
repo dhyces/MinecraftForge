@@ -27,7 +27,7 @@ modId="mdk_datagen"
 [[mods]]
     modId="crash_callable_test"
 [[mods]]
-    modid="custom_damage_effects_test"
+    modId="custom_damage_effects_test"
 
 # LEGACY TEST CASES
 ###### The mods below are from the old test framework and need to be yeeted later again.
